@@ -1266,7 +1266,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 8,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 1,
