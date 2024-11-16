@@ -38,6 +38,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "ports": {
               "groups": {
                 "top": {
@@ -121,7 +122,6 @@
               ]
             },
             "id": "8b3f19dc-febc-4549-94b5-23e289a6d7c2",
-            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Internet Gateway",
@@ -169,6 +169,13 @@
                 "denialOfService": 1,
                 "elevationOfPrivilege": 0
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -192,6 +199,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "ports": {
               "groups": {
                 "top": {
@@ -275,7 +283,6 @@
               ]
             },
             "id": "a9f048da-6155-4a8d-b094-98a40976e69a",
-            "zIndex": 3,
             "data": {
               "type": "tm.Process",
               "name": " Load Balancer",
@@ -320,7 +327,7 @@
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 1,
-                "denialOfService": 1,
+                "denialOfService": 2,
                 "elevationOfPrivilege": 0
               }
             }
@@ -346,6 +353,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "ports": {
               "groups": {
                 "top": {
@@ -429,7 +437,6 @@
               ]
             },
             "id": "09893051-77fe-4d1e-8684-9041f444377b",
-            "zIndex": 4,
             "data": {
               "type": "tm.Process",
               "name": "EC2 Web App",
@@ -445,8 +452,8 @@
                 {
                   "id": "874ebd1c-612c-4808-865d-9a3b90ed6cba",
                   "title": "Unauthorized access to EC2 instances",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "status": "Mitigated",
+                  "severity": "High",
                   "type": "Elevation of privilege",
                   "description": "An attacker could exploit misconfigurations or vulnerabilities to gain unauthorized access.",
                   "mitigation": " Configure strict IAM roles, disable unnecessary ports, and allow SSH only from secure IP addresses.",
@@ -475,7 +482,7 @@
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 0,
-                "elevationOfPrivilege": 1
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -500,6 +507,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 5,
             "ports": {
               "groups": {
                 "top": {
@@ -583,7 +591,6 @@
               ]
             },
             "id": "e9b9212b-9234-4742-ab8a-51123ff5357f",
-            "zIndex": 5,
             "data": {
               "type": "tm.Process",
               "name": "S3 Bucket",
@@ -599,8 +606,8 @@
                 {
                   "id": "4b916636-4b30-4e3b-b06a-ce497a9ad2d3",
                   "title": "Public exposure of logs",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "status": "Mitigated",
+                  "severity": "Low",
                   "type": "Information disclosure",
                   "description": "Misconfigured permissions could expose sensitive logs.",
                   "mitigation": "Configure strict bucket policies to ensure access is restricted to authorized roles.",
@@ -627,7 +634,7 @@
                 "spoofing": 0,
                 "tampering": 1,
                 "repudiation": 0,
-                "informationDisclosure": 1,
+                "informationDisclosure": 2,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
@@ -654,6 +661,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -737,7 +745,6 @@
               ]
             },
             "id": "5f5950df-1d59-4d2c-9598-6289248310ce",
-            "zIndex": 6,
             "data": {
               "type": "tm.Process",
               "name": "DynamoDB ",
@@ -754,7 +761,7 @@
                   "id": "92036d6c-76b5-4c09-8378-ceb15068adb0",
                   "title": "Exposure of sensitive data",
                   "status": "Open",
-                  "severity": "Medium",
+                  "severity": "High",
                   "type": "Information disclosure",
                   "description": "Unauthorized or misconfigured access could expose user and trip data.",
                   "mitigation": "Implement strict IAM policies, enable encryption at rest and in transit, and use Amazon KMS for key management.",
@@ -781,7 +788,7 @@
                 "spoofing": 0,
                 "tampering": 1,
                 "repudiation": 0,
-                "informationDisclosure": 1,
+                "informationDisclosure": 2,
                 "denialOfService": 0,
                 "elevationOfPrivilege": 0
               }
@@ -808,6 +815,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 7,
             "ports": {
               "groups": {
                 "top": {
@@ -891,7 +899,6 @@
               ]
             },
             "id": "8a087c4b-35a2-433d-8906-c929d4670171",
-            "zIndex": 7,
             "data": {
               "type": "tm.Process",
               "name": "SES",
@@ -908,7 +915,7 @@
                   "id": "f4f9eedd-2ca9-4fb4-a9f2-1832203bf39e",
                   "title": " Abuse of SES to send spam",
                   "status": "Open",
-                  "severity": "Medium",
+                  "severity": "Low",
                   "type": "Elevation of privilege",
                   "description": "An attacker could misuse SES for unauthorized email campaigns.",
                   "mitigation": "Restrict SES usage with IAM roles and monitor quotas.",
@@ -937,7 +944,7 @@
                 "repudiation": 0,
                 "informationDisclosure": 1,
                 "denialOfService": 0,
-                "elevationOfPrivilege": 1
+                "elevationOfPrivilege": 2
               }
             }
           },
@@ -962,6 +969,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 9,
             "ports": {
               "groups": {
                 "top": {
@@ -1045,7 +1053,6 @@
               ]
             },
             "id": "93bf50fe-9366-4425-898b-5240e873b5e1",
-            "zIndex": 9,
             "data": {
               "type": "tm.Process",
               "name": "Admin Interface",
@@ -1099,7 +1106,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "tampering": 1,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -1129,6 +1136,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 10,
             "ports": {
               "groups": {
                 "top": {
@@ -1212,7 +1220,6 @@
               ]
             },
             "id": "e30b91a2-630a-41cb-bd0a-464fe61f4410",
-            "zIndex": 10,
             "data": {
               "type": "tm.Process",
               "name": "Users (System Clients)",
@@ -2008,6 +2015,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -2091,7 +2099,6 @@
               ]
             },
             "id": "1c2f9e50-1af4-429c-ba89-b09826ef1895",
-            "zIndex": 11,
             "data": {
               "type": "tm.Process",
               "name": "Administrator",
@@ -2107,8 +2114,8 @@
                 {
                   "id": "ca3a81c4-361b-433f-a977-bc0fc9fcf503",
                   "title": "An attacker could steal administrator credentials to access sensitive areas of the system.",
-                  "status": "Open",
-                  "severity": "Medium",
+                  "status": "Mitigated",
+                  "severity": "High",
                   "type": "Spoofing",
                   "description": "An attacker could steal administrator credentials to access sensitive areas of the system.",
                   "mitigation": " Enforce MFA, use strong password policies, and enable session logging to detect anomalies.",
@@ -2158,7 +2165,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 3,
                 "tampering": 1,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -2188,6 +2195,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -2271,7 +2279,6 @@
               ]
             },
             "id": "583cad74-1065-433a-9ab5-a551bc323c79",
-            "zIndex": 12,
             "data": {
               "type": "tm.Process",
               "name": "API Gateway",
@@ -2288,7 +2295,7 @@
                   "id": "f4f9eedd-2ca9-4fb4-a9f2-1832203bf39e",
                   "title": "Unauthorized API access",
                   "status": "Open",
-                  "severity": "Medium",
+                  "severity": "High",
                   "type": "Spoofing",
                   "description": "Attackers could bypass authentication to access the API.",
                   "mitigation": "Use API keys, JWT tokens, and OAuth 2.0 for secure access.",
@@ -2312,7 +2319,7 @@
                 }
               ],
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 2,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -2342,6 +2349,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 13,
             "ports": {
               "groups": {
                 "top": {
@@ -2425,7 +2433,6 @@
               ]
             },
             "id": "1635aa0c-0763-4aba-a5b0-85481b176a3f",
-            "zIndex": 13,
             "data": {
               "type": "tm.Process",
               "name": "Lambda",
@@ -2442,7 +2449,7 @@
                   "id": "3b2fd957-60e8-40be-bb13-17e51fc6144a",
                   "title": "Misuse of Lambda Function",
                   "status": "Open",
-                  "severity": "Medium",
+                  "severity": "Low",
                   "type": "Elevation of privilege",
                   "description": "An attacker could exploit misconfigurations to trigger Lambda for unauthorized actions, such as mass notifications or data deletion.",
                   "mitigation": "Implement restrictive IAM roles, validate input parameters, and monitor execution logs via CloudWatch.",
@@ -2484,7 +2491,7 @@
                 "repudiation": 0,
                 "informationDisclosure": 1,
                 "denialOfService": 1,
-                "elevationOfPrivilege": 1
+                "elevationOfPrivilege": 2
               }
             }
           }
