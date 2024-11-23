@@ -75,6 +75,11 @@ jobs:
       - name: List files in current directory
         run: ls -al
 
+      - name: Check if fuzzing files exist
+        run: |
+          test -f fuzz-output.json && echo "fuzz-output.json exists" || echo "fuzz-output.json is missing"
+          test -f fuzz-report.html && echo "fuzz-report.html exists" || echo "fuzz-report.html is missing"
+
       - name: Upload Fuzzing Results
         uses: actions/upload-artifact@v4
         with:
@@ -82,6 +87,7 @@ jobs:
           path: |
             fuzz-output.json
             fuzz-report.html
+
 
   dast:
     name: DAST Analysis
@@ -104,7 +110,7 @@ jobs:
       - name: Upload DAST Results
         uses: actions/upload-artifact@v4
         with:
-          name: dast-results-${{ github.sha }}
+          name: dast-results
           path: |
             zap-output.json
             zap-report.html
