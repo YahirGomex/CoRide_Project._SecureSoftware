@@ -60,7 +60,9 @@ jobs:
       - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --user root --rm -v $(pwd):/zap/wrk:rw -w /zap zaproxy/zap-stable zap-cli fuzz \
+          docker run --user root --rm \
+            -v $(pwd):/zap/wrk:rw \
+            -w /zap zaproxy/zap-stable zap-cli fuzz \
             --context-file=fuzz-context.context \
             -t $TARGET_URL \
             -f fuzz-output.json \
@@ -85,7 +87,9 @@ jobs:
       - name: Run OWASP ZAP Baseline Scan
         run: |
           TARGET_URL="https://coride.site"
-          docker run --user root --rm -v $(pwd):/zap/wrk:rw -w /zap zaproxy/zap-stable zap-baseline.py \
+          docker run --user root --rm \
+            -v $(pwd):/zap/wrk:rw \
+            -w /zap zaproxy/zap-stable zap-baseline.py \
             -t $TARGET_URL \
             -J zap-output.json \
             -r zap-report.html \
