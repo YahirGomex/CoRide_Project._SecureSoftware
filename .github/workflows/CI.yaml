@@ -56,7 +56,7 @@ jobs:
 
 
   fuzzing:
-    name: Fuzzing Analysis
+    name: Fuzzing Analysis please
     needs: integration
     runs-on: ubuntu-latest
     steps:
