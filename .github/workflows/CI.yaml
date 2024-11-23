@@ -63,13 +63,17 @@ jobs:
       - name: Prepare Results Directory
         run: mkdir -p ./results
 
+      - name: Verify Mounted Directory
+        run: |
+          docker run --rm -v $(pwd)/results:/zap/wrk zaproxy/zap-stable ls -al /zap/wrk
+
       - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --rm zaproxy/zap-stable zap-baseline.py \
+          docker run --rm -v $(pwd)/results:/zap/wrk zaproxy/zap-stable zap-baseline.py \
             -t $TARGET_URL \
-            -r /zap/results/fuzz-report.html \
-            -J /zap/results/fuzz-output.json \
+            -r /zap/wrk/fuzz-report.html \
+            -J /zap/wrk/fuzz-output.json \
             -d || true
 
       - name: List Results
@@ -89,6 +93,7 @@ jobs:
         with:
           name: fuzzing-results-${{ github.sha }}
           path: ./results/
+
 
 
 
