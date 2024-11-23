@@ -66,27 +66,28 @@ jobs:
       - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --user root --rm -v $(pwd):/zap/wrk:rw -w /zap zaproxy/zap-stable zap-cli fuzz \
-            --context-file=/zap/wrk/fuzz-context.context \
+          docker run --user root --rm -v $(pwd):/zap/results:rw -w /zap zaproxy/zap-stable zap-cli fuzz \
+            --context-file=/zap/results/fuzz-context.context \
             -t $TARGET_URL \
-            -f /zap/wrk/fuzz-output.json \
-            -r /zap/wrk/fuzz-report.html || true
+            -f /zap/results/fuzz-output.json \
+            -r /zap/results/fuzz-report.html || true
 
-      - name: List files in current directory
-        run: ls -al
+      - name: List files in results directory
+        run: ls -al ./results
 
       - name: Check if fuzzing files exist
         run: |
-          test -f fuzz-output.json && echo "fuzz-output.json exists" || echo "fuzz-output.json is missing"
-          test -f fuzz-report.html && echo "fuzz-report.html exists" || echo "fuzz-report.html is missing"
+          test -f results/fuzz-output.json && echo "fuzz-output.json exists" || echo "fuzz-output.json is missing"
+          test -f results/fuzz-report.html && echo "fuzz-report.html exists" || echo "fuzz-report.html is missing"
 
       - name: Upload Fuzzing Results
         uses: actions/upload-artifact@v4
         with:
           name: fuzzing-results-${{ github.sha }}
           path: |
-            fuzz-output.json
-            fuzz-report.html
+            results/fuzz-output.json
+            results/fuzz-report.html
+
 
 
   dast:
