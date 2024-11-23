@@ -66,21 +66,21 @@ jobs:
       - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --user root --rm -v $(pwd)/results:/zap/results:rw zaproxy/zap-stable zap-baseline.py \
+          docker run --rm zaproxy/zap-stable zap-baseline.py \
             -t $TARGET_URL \
             -r /zap/results/fuzz-report.html \
             -J /zap/results/fuzz-output.json \
             -d || true
 
       - name: List Results
-        run: ls -al ./results
+        run: ls -al ./results || echo "No results found."
 
-      - name: Verify Results
+      - name: Check if Fuzz Report Exists
         run: |
           if [ -f ./results/fuzz-report.html ]; then
             echo "Fuzz report generated successfully."
           else
-            echo "Fuzz report missing. Debugging needed."
+            echo "Fuzz report is missing. Debugging needed."
             exit 1
           fi
 
@@ -89,6 +89,7 @@ jobs:
         with:
           name: fuzzing-results-${{ github.sha }}
           path: ./results/
+
 
 
   dast:
