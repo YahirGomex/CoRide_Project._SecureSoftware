@@ -69,7 +69,7 @@ jobs:
       - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --user root --rm -v $(pwd)/results:/zap/results:rw zaproxy/zap-stable zap-full-scan.py \
+          docker run --user root --rm -v $(pwd)/results:/zap/wrk:rw zaproxy/zap-stable zap-full-scan.py \
             -t $TARGET_URL \
             -r /zap/results/fuzz-report.html || true
       - name: Verify Results
