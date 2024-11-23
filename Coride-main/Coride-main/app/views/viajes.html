@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Co Ride - ¡Viaja ahora!</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="home.html#page-top">
+                    <div class="logo-container">
+                        <img src="assets/img/logo.png" alt="Logo" class="rounded-circle img-thumbnail logo"  alt="Logo" style="width: 70px; height: auto;">
+                    </div>
+                </a>
+                
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
+                        <li class="nav-item"><a class="nav-link" href="home.html#services">Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#portfolio">Conectate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#about">Sobre nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#team">Equipo</a></li>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                                const loginMenu = document.getElementById('loginMenu');
+                                const profileMenu = document.getElementById('profileMenu');
+                            
+                                if (token) {
+                                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                                    profileMenu.style.display = 'block';
+                                    loginMenu.style.display = 'none';
+                                } else {
+                                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                                    profileMenu.style.display = 'none';
+                                    loginMenu.style.display = 'block';
+                                }
+                            });
+                            
+                            function logout() {
+                                // Función para manejar la acción de cerrar sesión
+                                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+                            }
+                            </script>    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                const loginMenu = document.getElementById('loginMenu');
+                const profileMenu = document.getElementById('profileMenu');
+            
+                if (token) {
+                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                    profileMenu.style.display = 'block';
+                    loginMenu.style.display = 'none';
+                } else {
+                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                    profileMenu.style.display = 'none';
+                    loginMenu.style.display = 'block';
+                }
+            });
+            
+            function logout() {
+                // Función para manejar la acción de cerrar sesión
+                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+            }
+            </script>    
+                        <li class="nav-item dropdown" id="profileMenu">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="perfil.html">Mi Perfil</a>
+                                <a class="dropdown-item" href="#" onclick="logout()">Cerrar Sesión</a>
+                            </div>
+                        </li>
+                        <li class="nav-item" id="loginMenu">
+                            <a class="nav-link" href="./login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                    <style>
+                        @keyframes slideInLeft {
+                            0% {
+                                opacity: 0;
+                                transform: translateX(-100%);
+                            }
+                            100% {
+                                opacity: 1;
+                                transform: translateX(0);
+                            }
+                        }
+                    
+                        .masthead-subheading,
+                        .masthead-heading {
+                            animation: slideInLeft 1s ease-in-out; /* Aplicar la animación slideInLeft durante 1 segundo con una transición suave */
+                        }
+                    </style>
+                    
+                    <div class="masthead-subheading">Revisa y explora tus viajes pasados</div>
+                    <div class="masthead-heading text-uppercase">Ultimos viajes</div>
+                <style>
+                    .btn-round {
+                        display: inline-block;
+                        padding: 35px; /* Aumentamos el padding para hacer el botón más grande */
+                        border-radius: 50%; /* Esto hace que el botón sea redondo */
+                        background-color: #FFC800; /* Color de fondo del botón */
+                        color: #fff; /* Color del texto del botón */
+                        text-decoration: none; /* Quitamos el subrayado del enlace */
+                        position: relative; /* Establecemos la posición relativa para que podamos posicionar la flecha */
+                        transition: box-shadow 0.3s; /* Transición suave de la sombra */
+                        border: 4px solid transparent; /* Añadimos un borde transparente */
+                    }
+                
+                    .btn-round:hover {
+                        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Cambiamos la sombra cuando se pasa el mouse sobre el botón */
+                        background-color: #FFC800; /* Color de fondo del botón */
+                        opacity: 0.8; /* Cambiamos la opacidad cuando se pasa el mouse sobre el botón */
+
+                    }
+                
+                    .arrow {
+                        position: absolute; /* Establecemos la posición absoluta para posicionar la flecha */
+                        top: 50%; /* Colocamos la flecha en el centro verticalmente */
+                        left: 50%; /* Posicionamos la flecha en el centro horizontalmente */
+                        transform: translate(-50%, -50%); /* Centramos vertical y horizontalmente la flecha */
+                        font-size: 36px; /* Aumentamos el tamaño de la flecha */
+                    }
+                </style>
+                
+                <a class="btn-round btn fa-stack fa-3x" role="button" href="viajar.html">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-arrow-left fa-stack-1x fa-inverse arrow"></i> <!-- Cambiamos el ícono por una flecha de regresar -->
+                </a>
+                
+                
+                <a class="btn btn-primary btn-xl text-uppercase" href="#recientes">Explorar</a>
+            </div>
+        
+                <style>
+                    @keyframes slideInLeft {
+                        0% {
+                            opacity: 0;
+                            transform: translateX(-100%);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
+                
+                    .masthead-subheading,
+                    .masthead-heading {
+                        animation: slideInLeft 1s ease-in-out; /* Aplicar la animación slideInLeft durante 1 segundo con una transición suave */
+                    }
+                </style>
+                
+            </div>
+        </div>
+    </header>
+        <!-- Clients-->
+      
+            <div class="text-center container">
+                
+                    <!-- Encabezado de la tabla Buscar Viajes -->
+                    <div id="buscarViajesContainer">
+
+                    <!-- Tabla de Viajes -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Zona</th>
+                                    <th scope="col">Conductor</th>
+                                    <th scope="col">Horario</th>
+                                    <th scope="col">Dia</th>
+                                    <th scope="col">Tus viajes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--
+                                <tr>
+                                    <td>Estadio Jalisco</td>
+                                    <td>Carlos Sánchez</td>
+                                    <td>08:00 AM</td>
+                                    <td>4 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Plaza del Sol</td>
+                                    <td>María Fernández</td>
+                                    <td>09:30 AM</td>
+                                    <td>2 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Catedral Metropolitana</td>
+                                    <td>José Pérez</td>
+                                    <td>10:00 AM</td>
+                                    <td>5 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Hospicio Cabañas</td>
+                                    <td>Ana Ramírez</td>
+                                    <td>11:00 AM</td>
+                                    <td>3 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Teatro Degollado</td>
+                                    <td>Luis Guzmán</td>
+                                    <td>12:00 PM</td>
+                                    <td>2 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>La Minerva</td>
+                                    <td>Roberto Núñez</td>
+                                    <td>01:00 PM</td>
+                                    <td>3 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Parque Colomos</td>
+                                    <td>Cristina Morales</td>
+                                    <td>02:15 PM</td>
+                                    <td>2 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Zoológico Guadalajara</td>
+                                    <td>Fabián Cervantes</td>
+                                    <td>03:30 PM</td>
+                                    <td>5 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Mercado San Juan de Dios</td>
+                                    <td>Gabriela López</td>
+                                    <td>04:45 PM</td>
+                                    <td>4 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Los Arcos de Guadalajara</td>
+                                    <td>Santiago Fernández</td>
+                                    <td>06:00 PM</td>
+                                    <td>2 Asientos</td>
+                                    <td><a href="#" class="btn btn-success">Confirmar</a></td>
+                                </tr>-->
+                            </tbody>                            
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center mt-3">
+                            <div id="pagination" class="pagination"></div>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Co-Ride 2024</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Términos de privacidad</a>
+                        <a class="link-dark text-decoration-none" href="#!">Términos de uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                const loginMenu = document.getElementById('loginMenu');
+                const profileMenu = document.getElementById('profileMenu');
+            
+                if (token) {
+                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                    profileMenu.style.display = 'block';
+                    loginMenu.style.display = 'none';
+                } else {
+                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                    profileMenu.style.display = 'none';
+                    loginMenu.style.display = 'block';
+                }
+            });
+            
+            function logout() {
+                // Función para manejar la acción de cerrar sesión
+                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+            }
+            </script>    
+       
+       
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="./js/viajes.js"></script>
+
+    </body>
+</html>

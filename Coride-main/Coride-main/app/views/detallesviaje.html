@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Co Ride - ¡Viaja ahora!</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="home.html#page-top">
+                    <div class="logo-container">
+                        <img src="assets/img/logo.png" alt="Logo" class="rounded-circle img-thumbnail logo"  alt="Logo" style="width: 70px; height: auto;">
+                    </div>
+                </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
+                        <li class="nav-item"><a class="nav-link" href="home.html#services">Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#portfolio">Conectate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#about">Sobre nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="home.html#team">Equipo</a></li>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                                const loginMenu = document.getElementById('loginMenu');
+                                const profileMenu = document.getElementById('profileMenu');
+                            
+                                if (token) {
+                                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                                    profileMenu.style.display = 'block';
+                                    loginMenu.style.display = 'none';
+                                } else {
+                                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                                    profileMenu.style.display = 'none';
+                                    loginMenu.style.display = 'block';
+                                }
+                            });
+                            
+                            function logout() {
+                                // Función para manejar la acción de cerrar sesión
+                                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+                            }
+                            </script>    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                const loginMenu = document.getElementById('loginMenu');
+                const profileMenu = document.getElementById('profileMenu');
+            
+                if (token) {
+                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                    profileMenu.style.display = 'block';
+                    loginMenu.style.display = 'none';
+                } else {
+                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                    profileMenu.style.display = 'none';
+                    loginMenu.style.display = 'block';
+                }
+            });
+            
+            function logout() {
+                // Función para manejar la acción de cerrar sesión
+                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+            }
+            </script>    
+                        <li class="nav-item dropdown" id="profileMenu">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="perfil.html">Mi Perfil</a>
+                                <a class="dropdown-item" href="#" onclick="logout()">Cerrar Sesión</a>
+                            </div>
+                        </li>
+                        <li class="nav-item" id="loginMenu">
+                            <a class="nav-link" href="./login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section style="background-color: #212529;">
+              <section style=" margin: 10px !important;">
+                <div class="row">
+                    <header class="masthead">
+                        <div class="container">
+                            <div class="masthead-subheading">Mas detalles sobre tu viaje</div>
+                            <style>
+                                .btn-round {
+                                    display: inline-block;
+                                    padding: 35px; /* Aumentamos el padding para hacer el botón más grande */
+                                    border-radius: 50%; /* Esto hace que el botón sea redondo */
+                                    background-color: #FFC800; /* Color de fondo del botón */
+                                    color: #fff; /* Color del texto del botón */
+                                    text-decoration: none; /* Quitamos el subrayado del enlace */
+                                    position: relative; /* Establecemos la posición relativa para que podamos posicionar la flecha */
+                                    transition: box-shadow 0.3s; /* Transición suave de la sombra */
+                                }
+                            
+                                .btn-round:hover {
+                                    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Cambiamos la sombra cuando se pasa el mouse sobre el botón */
+                                }
+                            
+                                .arrow {
+                                    position: absolute; /* Establecemos la posición absoluta para posicionar la flecha */
+                                    top: 50%; /* Colocamos la flecha en el centro verticalmente */
+                                    left: 50%; /* Posicionamos la flecha en el centro horizontalmente */
+                                    transform: translate(-50%, -50%); /* Centramos vertical y horizontalmente la flecha */
+                                    font-size: 36px; /* Aumentamos el tamaño de la flecha */
+                                }
+                            </style>
+                            <a class="btn-round btn fa-stack fa-3x" role="button" href="viajes.html">
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-arrow-left fa-stack-1x fa-inverse arrow"></i> <!-- Cambiamos el ícono por una flecha de regresar -->
+                            </a>
+                            <a class="btn btn-primary btn-xl text-uppercase" href="#masInfo">¡Veamos!</a>
+                        </div>
+                    </header>
+                </div>
+            <div class="row" id="masInfo">
+                <div class="col-lg-4">
+                  <div class="card mb-4 animated-card">
+                    <div class="card-body text-center" style="height: 470px;">
+                    <br><br><br>
+                        <H4>Tu conductor es...</H4><br><br> 
+                        <img src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png" alt="avatar"
+                        class="rounded-circle img-fluid" style="width: 150px;">
+                        <style>
+                          .inline-container {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center; 
+                          }
+                        </style>
+                        <div class="inline-container my-3 ">
+                          <h5 style="margin-right: 10px" id="nombreV"></h5>
+                          
+                          <h5 style="margin-right: 10px" id="apellidoPV"></h5>
+                         
+                          <h5 style="margin-right: 10px;" id="apellidoMV"></h5>
+
+                     
+
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <h6 class="section-subheading text-muted">Telefono</h6>
+                            </div>
+                            <div class="col-6">
+                                <div class="progress rounded" style="height: 20px;">
+                                    <h6 class="section-subheading text-muted"><span style="color:#000000;" id="telefonoV"></span></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>    
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card mb-4 animated-card">
+                      <div class="card-body text-center" style="height: 470px;">
+                      <br>
+                      <br> 
+                      <br> 
+                          <H4>Su vehículo es...</H4><br>
+                          <img src="https://cdn-icons-png.flaticon.com/512/7828/7828852.png" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 150px;">
+                          <style>
+                            .inline-container {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center; 
+                            }
+                          </style>
+                          <br><br>
+                           <div class="row">
+                                <div class="col-6">
+                                    <h6 class="section-subheading text-muted">Marca del vehículo</h6>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="marcaV"></span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="section-subheading text-muted">Modelo del vehículo</h6>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="modeloV"></span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="section-subheading text-muted">Año del vehículo</h6>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="anoV"></span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="section-subheading text-muted">Color del vehículo</h6>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="colorV"></span></h6>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="section-subheading text-muted">Placa del vehículo</h6>
+                                </div>
+                                <div class="col-6">
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="placaV"></span></h6>
+                                    </div>
+                                </div>
+                            </div>    
+                          <br><br>    
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="card mb-4 animated-card">
+                      <div class="card-body text-center" style="height: 470px;">
+                        <br><br><br>
+                        <H4>Información relevante</H4><br>
+                          <img src="https://th.bing.com/th/id/R.8896ee897fd8741793a88ef061ac25c3?rik=DldbwIMR0jKEgw&pid=ImgRaw&r=0" alt="avatar"
+                          class="rounded-circle img-fluid" style="width: 150px;">
+                          <style>
+                            .inline-container {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center; 
+                            }
+                          </style>          
+                          <br><br>    
+                          <div class="row">
+                            <div class="col-6">
+                                <h6 class="section-subheading text-muted">Zona destino</h6>
+                            </div>
+                            <div class="col-6">
+                                <div class="progress rounded" style="height: 20px;">
+                                    <h6 class="section-subheading text-muted"><span style="color:#000000;" id="zonaV"></span></h6>
+                                </div>
+                            </div>
+                          </div>
+                        
+                        <div class="row">
+                            <div class="col-6">
+                                <h6 class="section-subheading text-muted">Horario de inicio</h6>
+                            </div>
+                            <div class="col-6">
+                                <div class="progress rounded" style="height: 20px;">
+                                    <h6 class="section-subheading text-muted"><span style="color:#000000;" id="horaV"></span></h6>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Co-Ride 2024</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Términos de privacidad</a>
+                        <a class="link-dark text-decoration-none" href="#!">Términos de uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                const loginMenu = document.getElementById('loginMenu');
+                const profileMenu = document.getElementById('profileMenu');
+            
+                if (token) {
+                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                    profileMenu.style.display = 'block';
+                    loginMenu.style.display = 'none';
+                } else {
+                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                    profileMenu.style.display = 'none';
+                    loginMenu.style.display = 'block';
+                }
+            });
+            
+            function logout() {
+                // Función para manejar la acción de cerrar sesión
+                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+            }
+            </script>    
+       
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="./js/detallesviaje.js"></script>
+
+    </body>
+</html>

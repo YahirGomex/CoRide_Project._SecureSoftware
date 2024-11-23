@@ -1,0 +1,13 @@
++------------------+          +------------------+          +------------------+
+|      Viajes      |          |     Usuarios     |          |     Vehículos    |
++------------------+          +------------------+          +------------------+
+| - uuid           |          | - idUser         |          | - idCarro        |
+| - idUser         |--------->|- nombre          |--------->|- idUser          |
+| - zone           |          | - apellido       |          | - marca          |
+| - driver         |          | - carrera        |          | - modelo         |
+| - hour           |          | - tieneCarro     |          | - color          |
+| - disponibility  |          |                  |          | - seguro         |
+| - days           |          |                  |          |                  |
+| - passengers     |          |                  |          |                  |
++------------------+          +------------------+          +------------------+
+
