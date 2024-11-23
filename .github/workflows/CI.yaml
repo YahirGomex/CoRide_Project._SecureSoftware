@@ -1,5 +1,9 @@
 name: SAST and DAST Parallel Execution
 
+permissions:
+  contents: write
+  security-events: write
+
 on:
   push:
     branches:
@@ -42,12 +46,14 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           output: 'codeql-results.sarif'
+          upload: true
 
       - name: Upload SAST Results
         uses: actions/upload-artifact@v4
         with:
           name: sast-results-${{ github.sha }}
           path: codeql-results.sarif
+
 
   fuzzing:
     name: Fuzzing Analysis
