@@ -56,7 +56,7 @@ jobs:
 
   fuzzing:
     name: Fuzzing Analysis
-    needs: integration
+    needs: sast
     runs-on: ubuntu-latest
     steps:
       - name: Pull OWASP ZAP Docker Image
@@ -87,7 +87,7 @@ jobs:
 
   dast:
     name: DAST Analysis
-    needs: integration
+    needs: fuzzing
     runs-on: ubuntu-latest
     steps:
       - name: Pull OWASP ZAP Docker Image
