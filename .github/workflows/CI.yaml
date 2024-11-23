@@ -49,6 +49,31 @@ jobs:
           name: sast-results-${{ github.sha }}
           path: codeql-results.sarif
 
+  fuzzing:
+    name: Fuzzing Analysis
+    needs: integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull OWASP ZAP Docker Image
+        run: docker pull zaproxy/zap-stable
+
+      - name: Run OWASP ZAP Fuzzing
+        run: |
+          TARGET_URL="https://coride.site"
+          docker run --user root --rm -v $(pwd):/zap/wrk:rw -w /zap zaproxy/zap-stable zap-cli fuzz \
+            --context-file=fuzz-context.context \
+            -t $TARGET_URL \
+            -f fuzz-output.json \
+            -r fuzz-report.html || true
+
+      - name: Upload Fuzzing Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuzzing-results-${{ github.sha }}
+          path: |
+            fuzz-output.json
+            fuzz-report.html
+
   dast:
     name: DAST Analysis
     needs: integration
@@ -74,3 +99,5 @@ jobs:
           path: |
             zap-output.json
             zap-report.html
+
+
