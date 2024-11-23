@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <script src="./js/perfil.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <title>Co Ride - ¡Viaja ahora!</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="css/styles.css" rel="stylesheet" />
+  <!-- Modal -->
+  <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarPerfilModalLabel">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulario con ID para referenciar en JS -->
+          <form id="updateForm">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="mb-3">
+              <label for="apellidoP" class="form-label">Apellido Paterno</label>
+              <input type="text" class="form-control" id="apellidoP" name="apellidoP">
+            </div>
+            <div class="mb-3">
+              <label for="apellidoM" class="form-label">Apellido Materno</label>
+              <input type="text" class="form-control" id="apellidoM" name="apellidoM">
+            </div>
+            <div class="mb-3">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="text" class="form-control" id="telefono" name="telefono">
+            </div>
+            <div class="mb-3">
+              <label for="edad" class="form-label">Edad</label>
+              <input type="number" class="form-control" id="edad" name="edad" min:18>
+            </div>
+            <div class="mb-3">
+              <label for="carrera" class="form-label">Carrera</label>
+              <input type="text" class="form-control" id="carrera" name="carrera">
+            </div>
+            <div class="mb-3">
+              <label for="marcaVehiculo" class="form-label">Marca del Vehículo</label>
+              <input type="text" class="form-control" id="marcaVehiculo" name="marcaVehiculo">
+            </div>
+            <div class="mb-3">
+              <label for="modeloVehiculo" class="form-label">Modelo del Vehículo</label>
+              <input type="text" class="form-control" id="modeloVehiculo" name="modeloVehiculo">
+            </div>
+            <div class="mb-3">
+              <label for="yearVehiculo" class="form-label">Año del Vehículo</label>
+              <input type="number" class="form-control" id="yearVehiculo" name="yearVehiculo">
+            </div>
+            <div class="mb-3">
+              <label for="colorVehiculo" class="form-label">Color del Vehículo</label>
+              <input type="text" class="form-control" id="colorVehiculo" name="colorVehiculo">
+            </div>
+            <div class="mb-3">
+              <label for="placa" class="form-label">Placa</label>
+              <input type="text" class="form-control" id="placa" name="placa">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" onclick="updateProfile()">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</head>
+<body id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+      <div class="container">
+          <a class="navbar-brand" href="home.html">
+              <div class="logo-container">
+                  <img src="assets/img/logo.png" alt="Logo" class="rounded-circle img-thumbnail logo" href="home.html" alt="Logo" style="width: 70px; height: auto;">
+              </div>
+          </a>
+          
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              Menu
+              <i class="fas fa-bars ms-1"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+              <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
+                  <li class="nav-item"><a class="nav-link" href="home.html#services">Roles</a></li>
+                  <li class="nav-item"><a class="nav-link" href="home.html#portfolio">Conectate</a></li>
+                  <li class="nav-item"><a class="nav-link" href="home.html#about">Sobre nosotros</a></li>
+                  <li class="nav-item"><a class="nav-link" href="home.html#team">Equipo</a></li>
+                  <li class="nav-item dropdown" id="profileMenu">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId">
+                        <a class="dropdown-item" href="perfil.html">Mi Perfil</a>
+                        <a class="dropdown-item" href="#" onclick="logout()">Cerrar Sesión</a>
+                    </div>
+                </li>
+                <li class="nav-item" id="loginMenu">
+                    <a class="nav-link" href="./login.html">Login</a>
+                </li>
+              </ul>
+          </div>
+      </div>
+  </nav>
+    <section style="background-color: #212529;">
+        <div class="container py-2 ;" >
+
+          </div>
+          <section style=" margin: 10px !important;  ">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center" style="height: 620px;">
+                <br><br><br><br><br>
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                    <style>
+                      .inline-container {
+                          display: flex;
+                          align-items: center;
+                          justify-content: center; 
+                         
+                          
+                          
+                      }
+                    </style>
+                    <div class="inline-container my-3 ">
+                      <h5 style="margin-right: 10px" id="nombreI">  </h5>
+                      
+                      <h5 style="margin-right: 10px" id="apellidoPI"> </h5>
+                     
+                      <h5 style="margin-right: 10px;" id="apellidoMI"> </h5>
+                    </div>                  
+                  <!-- Botón para abrir el modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarPerfilModal" style="font-size: 20px; padding: 15px 30px;">
+                    Editar perfil
+                </button>
+              <br>              <br>                  
+                  
+              <p>En CO RIDES entendemos la importancia de la privacidad. Por eso, nos comprometemos a proteger y cuidar la información personal que nos confían. Tu privacidad es nuestra prioridad.</p>
+
+
+                </div>
+                
+              </div>
+              <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center" style="height: 100px;">
+                    <a href="agregarviajes.html" class="btn btn-primary btn-lg w-100">Agregar viajes</a>
+                </div>
+            </div>
+            
+            
+            
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0" >Edad</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0" id="edadI"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0" id="correoI"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Telefono</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0 " id="telefonoI"></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Carrera</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0" id="carreraI"></p>
+                    </div>
+                  </div>
+                  <hr>
+                
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body" style="height: 420px;">
+                      <p class="mb-4"><span class="text-primary font-italic me-1">Perfil</span> Conductor</p>
+                      <h6 class="section-subheading text-muted">Marca del vehículo</h6>
+                      <div class="progress rounded" style="height: 20px; ">
+                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="marcaVehiculoI"></span></h6>
+                      </div>
+                      <br>
+                      <h6 class="section-subheading text-muted">Modelo del vehículo</h6>
+                      <div class="progress rounded" style="height: 20px; ">
+                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="modeloVehiculoI"></span></h6>
+                      </div>
+                      <br>
+                      <h6 class="section-subheading text-muted">Año del vehículo</h6>
+                      <div class="progress rounded" style="height: 20px; ">
+                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="yearVehiculoI"></span></h6>
+                      </div>
+                      <br>
+                      <h6 class="section-subheading text-muted">Color del vehículo</h6>
+                      <div class="progress rounded" style="height: 20px;  ">
+                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="colorVehiculoI"></span></h6>
+                      </div>
+                      <br>
+                      <h6 class="section-subheading text-muted">Placa del vehículo</h6>
+                      <div class="progress rounded" style="height: 20px">
+                        <h6 class="section-subheading text-muted"><span style="color:#000000;" id="placaI"></span></h6>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 ">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body"style="height: 420px;" >
+                      <p class="mb-4"><span class="text-primary font-italic me-1">Reglas</span> Pasajero
+                      </p>
+                            <h6 class="section-subheading text-muted"><span style="color:#ffc800  ;">1.</span> Seguridad en primer lugar: Abrocha siempre el cinturón de seguridad.</h6>
+                            <br>
+                            <h6 class="section-subheading text-muted"><span style="color:#ffc800  ;">2.</span>Respeto mutuo: Trata a tu conductor y a otros pasajeros con cortesía y respeto en todo momento.</h6>
+                            <br>
+                            <h6 class="section-subheading text-muted"><span style="color:#ffc800  ;">3.</span>Puntualidad: Sé puntual para tus viajes programados.</h6>
+                            <br>
+                            <h6 class="section-subheading text-muted"><span style="color:#ffc800  ;">4.</span> Comunicación clara: Si necesitas hacer cambios en tu viaje o si surge algún problema, comunícalo inmediatamente.</h6>
+                            <br>
+                            <h6 class="section-subheading text-muted"><span style="color:#ffc800  ;">5.</span> Honestidad: Proporciona infromación precisa sobre ti misma y tu destino.</h6>
+                            <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      </section>
+        <!-- Footer-->
+        <footer class="footer py-4">
+          <div class="container">
+              <div class="row align-items-center">
+                  <div class="col-lg-4 text-lg-start">Copyright &copy; Co-Ride 2024</div>
+                  <div class="col-lg-4 my-3 my-lg-0">
+                      
+                  </div>
+                  <div class="col-lg-4 text-lg-end">
+                      <a class="link-dark text-decoration-none me-3" href="#!">Términos de privacidad</a>
+                      <a class="link-dark text-decoration-none" href="#!">Términos de uso</a>
+                  </div>
+              </div>
+          </div>
+      </footer>
+       
+      
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <script src="js/infoPerfil.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+# Consulta de todos los viajes
+POST http://localhost:3000/travels/e1640efb-54b1-4284-8eba-6d6094043bbc/confirm
+Content-Type: application/json
+
+{
+  "correo": "juan.perddez@example.com"
+}
+###
+
+# Crear un viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Zona Falsa",
+  "driver": "Conductor Falso",
+  "hour": "00:00",
+  "disponibility": 0
+}
+###
+
+# Crear 5 viajes
+# Primer viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Estadio Jalisco",
+  "driver": "Carlos Sánchez",
+  "hour": "08:00 AM",
+  "disponibility": 4
+}
+###
+
+# Segundo viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Plaza del Sol",
+  "driver": "María Fernández",
+  "hour": "09:30 AM",
+  "disponibility": 2
+}
+###
+
+# Tercer viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Catedral Metropolitana",
+  "driver": "José Pérez",
+  "hour": "10:00 AM",
+  "disponibility": 5
+}
+###
+
+# Cuarto viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Hospicio Cabañas",
+  "driver": "Ana Ramírez",
+  "hour": "11:00 AM",
+  "disponibility": 3
+}
+###
+
+# Quinto viaje
+POST http://localhost:3000/travels
+Content-Type: application/json
+
+{
+  "zone": "Teatro Degollado",
+  "driver": "Luis Guzmán",
+  "hour": "12:00 PM",
+  "disponibility": 2
+}
+###
+
+# Eliminar un viaje
+DELETE http://localhost:3000/travels/847e47cf-9f81-4bb9-94e5-f7fbea24cba5
+###
+
+# Consulta de viaje por ID
+GET http://localhost:3000/travels/62781ca4-fac8-4096-83ec-9f612d659632
+###
+
+# Consulta de viaje con el parámetro de filtrado
+GET http://localhost:3000/travels?filter=Plaza
+###
+
+# Editar viaje
+PUT http://localhost:3000/travels/62781ca4-fac8-4096-83ec-9f612d659632
+Content-Type: application/json
+
+{
+  "zone": "Zona Editada",
+  "driver": "Conductor Editado",
+  "hour": "Hora Editada",
+  "disponibility": 10
+}
+###
+
+# Verificar el arreglo de viajes actualizado
+GET http://localhost:3000/travels
+###
+
+
+###
+
+POST http://localhost:3000/register
+Content-Type: application/json
+
+{
+    "nombre": "Juan",
+    "apellidoP": "Pérez",
+    "apellidoM": "López",
+    "telefono": "1234567890",
+    "correo": "juan.perddez@example.com",
+    "password": "mipasswordseguro"
+}
+###
+curl -X POST http://localhost:3000/register -H "Content-Type: application/json" -d '{"nombre": "test", "apellidoP": "test", "apellidoM": "test", "telefono": "1234567890", "correo": "test@test.com", "password": "password123"}'
+
+### 
+POST  http://localhost:3000/register-travel
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM2NDE4ZDIyOWYwYjExODA1YzY0YTYiLCJpYXQiOjE3MTQ5Mzg0MjgsImV4cCI6MTcxNDk0NTYyOH0.CnOVkicH_vcbWkdaw-0QnRWcAXuoaenKTHK24_XhXpU
+
+ {
+    "uuid": "123e4567-e89b-12d3-a456-426614174000",
+    "zone": "Zona Norte",
+    "driver": "Juan Perez",
+    "hour": "2023-09-01T08:00:00.000Z",
+    "disponibility": 3,
+
+    "days": ["Lunes"]
+}
+
+###
+GET http://localhost:3000/travels
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM2NDE4ZDIyOWYwYjExODA1YzY0YTYiLCJpYXQiOjE3MTQ5Mzg0MjgsImV4cCI6MTcxNDk0NTYyOH0.CnOVkicH_vcbWkdaw-0QnRWcAXuoaenKTHK24_XhXpU
+
+###
+GET http://localhost:3000/profile-name/gus@gus.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM1YmY3NDMyMTlkMDM5MmE2ZTgxYWEiLCJpYXQiOjE3MTQ5NjQyMDUsImV4cCI6MTcxNDk3MTQwNX0.UAKh132E_psUaOcciI4nD4nf7IdmsBKXZYukkeO_pTg
+###
+GET http://localhost:3000/travels/travel-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjM1YmY3NDMyMTlkMDM5MmE2ZTgxYWEiLCJpYXQiOjE3MTUxODQ5MjIsImV4cCI6MTcxNTE5MjEyMn0.7GC4qKHZyOI5Xq-gQ39GpwW2DdpKDGp_xGG5YTcWziQ
+
+###
+GET http://localhost:3000/profile-name/userA@hotmail.com
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NjNiYmNmNDliZjFlM2VjZDI5M2RkYTkiLCJpYXQiOjE3MTUxOTE5MTcsImV4cCI6MTcxNTE5OTExN30.ujh3_0KPiGHeDxFtoPfNst6KashpU3M9Ze71qwhH7LU
+
+
+##Este es un cambio

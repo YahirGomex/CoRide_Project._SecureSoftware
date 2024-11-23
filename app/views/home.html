@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Co Ride</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <div class="logo-container">
+                        <img src="assets/img/logo.png" alt="Logo" class="rounded-circle img-thumbnail logo"  alt="Logo" style="width: 70px; height: auto;">
+                    </div>
+                </a>
+                
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" >
+                        <li class="nav-item"><a class="nav-link" href="#services">Roles</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Conectate</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">Sobre nosotros</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team">Equipo</a></li>
+                        <li class="nav-item dropdown" id="profileMenu">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                <a class="dropdown-item" href="perfil.html">Mi Perfil</a>
+                                <a class="dropdown-item" href="#" onclick="logout()">Cerrar Sesión</a>
+                            </div>
+                        </li>
+                        <li class="nav-item" id="loginMenu">
+                            <a class="nav-link" href="./login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <style>
+                    @keyframes fadeIn {
+                        0% {
+                            opacity: 0;
+                        }
+                        100% {
+                            opacity: 1;
+                        }
+                    }
+                
+                    .masthead-subheading,
+                    .masthead-heading {
+                        animation: fadeIn 2s ease-in-out; /* Aplicar la animación fadeIn durante 1 segundo con una transición suave */
+                    }
+                </style>
+                
+                <div class="masthead-subheading">Viaja sin límites: encuentra tu ride perfecto aquí.</div>
+                <div class="masthead-heading text-uppercase">Explora la nueva forma de moverte</div>
+                
+                <a class="btn btn-primary btn-xl text-uppercase" href="viajar.html">¡Viaja ahora!</a>
+            </div>
+        </header>
+        <!-- Services-->
+        <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Roles</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <a class="fa-stack fa-4x" role="button" >
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-car fa-stack-1x fa-stack-1x fa-inverse"></i>
+                            </a>
+                            <h4 class="my-3" role="button" >Conductor</h4>
+                            <p class="text-muted">Ayuda a las personas de la comunidad, llevando a personas que necesitan transporte y tambien participa de las ventajas de ser un pasajero.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a class="fa-stack fa-4x" role="button" >
+                                <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <i class="fas fa-person fa-stack-1x fa-stack-1x fa-inverse"></i>
+                            </a>
+                            <h4 class="my-3" role="button" >Pasajero</h4>
+                            <p class="text-muted">Busca por lugares y horarios similares para que puedas elegir el viaje más seguro y cómodo para ti.</p>
+                        </div>
+                    </div>
+                    
+            </div>
+        </section>
+        <!-- Portfolio Grid-->
+        <section class="page-section bg-light" id="portfolio">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Conectate</h2>
+                    <h3 class="section-subheading text-muted">Expande el potencial de la comunidad.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 1-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/conectate/conectate1.jpg" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Personas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 2-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal2">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/conectate/conectate2.png" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Transporte</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 mb-4">
+                        <!-- Portfolio item 3-->
+                        <div class="portfolio-item">
+                            <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal3">
+                                <div class="portfolio-hover">
+                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                                </div>
+                                <img class="img-fluid" src="assets/img/conectate/conectate3.png" alt="..." />
+                            </a>
+                            <div class="portfolio-caption">
+                                <div class="portfolio-caption-heading">Lugares</div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </section>
+        <!-- About-->
+        <section class="page-section" id="about" >
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Sobre nosotros</h2>
+                    <h3 class="section-subheading text-muted"> Un grupo de 3 ingenieros desgastados buscamos implementar un sistema de aventones de una manera segura. Nuestra plataforma no solo se trata de llegar del punto A al punto B, sino de disfrutar del viaje todos los días junto a personas de la comunidad itesiana. Ya sea que estés buscando un compañero de viaje para tu viaje diario, o para un viaje casual.
+
+                        Nos enorgullece ofrecer una comunidad diversa y acogedora, donde conductores y pasajeros pueden conectarse de manera segura y fácil. Con características intuitivas y medidas de seguridad sólidas, puedes confiar para que tu experiencia de viaje sea fluida y placentera en todo momento.</h3>
+                </div>
+               
+            </div>
+        </section>
+        <!-- Team-->
+        <section class="page-section bg-light" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Nuestro equipo</h2>
+                    <h3 class="section-subheading text-muted">Un sistemas y dos ciberseguros</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="./assets/img/team/luis.jpg" alt="..." />
+                            <h4>Luis Gutierrez</h4>
+                            <p class="text-muted">Un agregado al equipo</p>
+                           
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="./assets/img/team/soy ese.jpg" alt="..." />
+                            <h4>Gustavo Rivas</h4>
+                            <p class="text-muted">CiberPolicia</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="./assets/img/team/Yahir.png" alt="..." />
+                            <h4>Yahir Gómez</h4>
+                            <p class="text-muted">Tiktoker infravalorado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Clients-->
+      
+        
+        <!-- Footer-->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Co-Ride 2024</div>
+                    <div class="col-lg-4 my-3 my-lg-0">
+                        
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#!">Términos de privacidad</a>
+                        <a class="link-dark text-decoration-none" href="#!">Términos de uso</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Portfolio Modals-->
+        <!-- Portfolio item 1 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Personas</h2>
+                                <br>
+                                    <p>En CO RAIDES, no importa tanto si eres un conductor dispuesto a ofrecer un viaje,
+                                         o si eres un pasajero en busca de un compañero de viaje, este es el lugar para
+                                          conectar con personas afines a ti. Únete a nuestra comunidad hoy mismo y descubre 
+                                          nuevas amistades mientras recorres distancias juntos.</p>
+                                   
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Regresar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 2 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Transporte</h2>
+                                <br>
+                                    <p>Con CO RIDES, contribuyes a la mejora del tráfico urbano al ofrecer transporte a aquellos que comparten destinos contigo,
+                                         lo que reduce la cantidad de vehículos en las calles y disminuye la congestión. Además, al unirte a una comunidad más grande de usuarios,
+                                         aumentas las posibilidades de encontrar compañeros de viaje, lo que facilita la movilidad y promueve una alternativa más sostenible y eficiente para desplazarse por la ciudad. </p>
+                                  
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Regresar                                   
+                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Portfolio item 3 modal popup-->
+        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <!-- Project details-->
+                                    <h2 class="text-uppercase">Lugares</h2>
+                                    <br>
+                                    <p>
+                                        Con CO RIDES, explorarás una diversidad de destinos a los que puedes viajar,
+                                         todos con conductores que cubren esas rutas específicas, brindándote la conveniencia
+                                          de elegir entre una amplia variedad de opciones para tus desplazamientos.</p>
+                                  
+                                    <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" type="button">
+                                        <i class="fas fa-xmark me-1"></i>
+                                        Regresar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const token = sessionStorage.getItem('token'); // o localStorage.getItem('token')
+                const loginMenu = document.getElementById('loginMenu');
+                const profileMenu = document.getElementById('profileMenu');
+            
+                if (token) {
+                    // Si hay un token, mostrar el menú del perfil y ocultar el botón de login
+                    profileMenu.style.display = 'block';
+                    loginMenu.style.display = 'none';
+                } else {
+                    // Si no hay token, mostrar el botón de login y ocultar el menú del perfil
+                    profileMenu.style.display = 'none';
+                    loginMenu.style.display = 'block';
+                }
+            });
+            
+            function logout() {
+                // Función para manejar la acción de cerrar sesión
+                sessionStorage.removeItem('token'); // o localStorage.removeItem('token')
+                window.location.href = '/login.html'; // Redirige al usuario a la página de login
+            }
+            </script>       
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
