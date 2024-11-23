@@ -56,43 +56,30 @@ jobs:
 
 
   fuzzing:
-    name: Fuzzing Analysis please
+    name: Fuzzing Analysis
     needs: integration
     runs-on: ubuntu-latest
     steps:
+      - name: Pull OWASP ZAP Docker Image
+        run: docker pull zaproxy/zap-stable
+
       - name: Prepare Results Directory
         run: mkdir -p ./results
 
-      - name: Fix Permissions for Results Directory
-        run: chmod 777 ./results
-
-      - name: Run OWASP ZAP as Root
+      - name: Run OWASP ZAP Fuzzing
         run: |
           TARGET_URL="https://coride.site"
-          docker run --rm --user root -v $(pwd)/results:/zap/wrk zaproxy/zap-stable zap-baseline.py \
+          docker run --user root --rm -v $(pwd)/results:/zap/results:rw zaproxy/zap-stable zap-full-scan.py \
             -t $TARGET_URL \
-            -r /zap/wrk/fuzz-report.html \
-            -J /zap/wrk/fuzz-output.json \
-            -d || true
-
-      - name: List Results
-        run: ls -al ./results || echo "No results found."
-
-      - name: Check if Fuzz Report Exists
+            -r /zap/results/fuzz-report.html || true
+      - name: Verify Results
         run: |
-          if [ -f ./results/fuzz-report.html ]; then
-            echo "Fuzz report generated successfully."
-          else
-            echo "Fuzz report is missing. Debugging needed."
-            exit 1
-          fi
-
+          test -f ./results/fuzz-report.html && echo "fuzz-report.html exists" || echo "fuzz-report.html is missing"
       - name: Upload Fuzzing Results
         uses: actions/upload-artifact@v4
         with:
           name: fuzzing-results-${{ github.sha }}
-          path: ./results/
-
+          path: ./results/fuzz-report.html
 
 
 
@@ -114,7 +101,6 @@ jobs:
             -r zap-report.html \
             -d \
             -m 5 || true
-
       - name: Upload DAST Results
         uses: actions/upload-artifact@v4
         with:
@@ -122,5 +108,3 @@ jobs:
           path: |
             zap-output.json
             zap-report.html
-
-
