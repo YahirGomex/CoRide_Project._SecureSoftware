@@ -1,57 +1,53 @@
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
-const helmet = require('helmet');
-const cors = require('cors');
 const router = require('./app/controllers/router');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const crypto = require('crypto');
 
 const app = express();
 const port = 3000;
 
-// Middleware para analizar cookies
-app.use(cookieParser());
-
-// Middleware para habilitar CORS con configuración estricta
-const allowedOrigins = ['https://coride.site']; // Lista de orígenes permitidos
+// Configuración segura de CORS
+const allowedOrigins = ['https://coride.site']; // Dominios confiables
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-}));
-
-// Middleware para configurar políticas de seguridad con Helmet
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"], // Solo permite cargar recursos del propio dominio
-      scriptSrc: ["'self'", "'unsafe-inline'"], // Permite scripts locales
-      objectSrc: ["'none'"], // No permite objetos como Flash o Applets
-      imgSrc: ["'self'", 'data:'], // Permite imágenes locales y data URIs
-      frameAncestors: ["'self'"], // Previene Clickjacking permitiendo solo iframes del mismo origen
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('No autorizado por CORS.'));
+        }
     },
-  },
-  frameguard: {
-    action: 'sameorigin', // Configura X-Frame-Options para SAMEORIGIN
-  },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
 }));
 
-// Middleware para analizar JSON
+// Configuración de cabeceras de seguridad
+app.use((req, res, next) => {
+    res.setHeader(
+        'Content-Security-Policy',
+        "default-src 'self'; " +
+        `script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://use.fontawesome.com https://cdn.startbootstrap.com; ` +
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
+        "font-src 'self' https://fonts.gstatic.com; " +
+        "img-src 'self'; " +
+        "frame-ancestors 'none';" +
+        `connect-src 'self' https://coride.site;`
+    );
+    next();
+});
+
+app.use(cookieParser());
 app.use(express.json());
-
-// Rutas de la aplicación
 app.use(router);
-
-// Middleware para servir archivos estáticos
 app.use(express.static('app'));
 app.use('/images', express.static(path.join(__dirname, 'app/views/images')));
+app.use(express.static('app/views'));
+app.use('/', express.static(path.join(__dirname, 'app', 'views')));
 
-// Inicio del servidor
+const dynamoose = require('./app/data/dynamoose.js');
+
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on http://localhost:${port}`);
 });

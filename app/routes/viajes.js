@@ -3,30 +3,31 @@ const router = express.Router();
 const Travel = require('../data/travels');  // Asegúrate de tener un modelo Dynamoose llamado Travel
 const dynamoose = require('dynamoose');
 
+// Validación de entrada para prevenir SQL Injection
+const isValidInput = (input) => /^[a-zA-Z0-9\s]+$/.test(input);
+
 // Ruta para obtener todos los viajes o filtrarlos por zona
 router.get('/', async (req, res) => {
-    const zone = req.query.zone;
+    const { zone } = req.query;
 
-    // Validar el parámetro "zone"
-    if (zone && typeof zone !== 'string') {
-        return res.status(400).json({ error: 'Invalid parameter: zone must be a string' });
+    if (zone && !isValidInput(zone)) {
+        return res.status(400).send("Parámetro 'zone' contiene caracteres inválidos.");
     }
 
     try {
-        // Construcción segura de la consulta
         const condition = zone 
-            ? new dynamoose.Condition().where("zone").eq(zone) // Validación estricta de igualdad
-            : null;
+            ? new dynamoose.Condition().where("zone").contains(zone)
+            : new dynamoose.Condition();
 
-        // Ejecutar el escaneo
-        const results = condition 
-            ? await Travel.scan(condition).exec()
-            : await Travel.scan().exec();
-
-        res.json(results);
-    } catch (error) {
-        console.error('Error retrieving travels:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        Travel.scan(condition).exec((error, results) => {
+            if (error) {
+                console.error('Error al consultar viajes:', error);
+                return res.status(400).send("Error: " + error.message);
+            }
+            res.status(200).json(results);
+        });
+    } catch (e) {
+        res.status(400).send("Error: " + e.message);
     }
 });
 
@@ -53,14 +54,13 @@ router.get('/:uuid', async (req, res) => {
     try {
         Travel.query("uuid").eq(req.params.uuid).limit(1).exec((error, results) => {
             if (error) {
-                res.status(400).send("Query error: " + error.message);
-            } else {
-                if (!results[0]) {
-                    res.status(404).send("Travel not found");
-                } else {
-                    res.status(200).json(results[0]);
-                }
+                console.error("Query error:", error);
+                return res.status(400).send("Error al buscar el viaje.");
             }
+            if (!results[0]) {
+                return res.status(404).send("Travel not found");
+            }
+            res.status(200).json(results[0]);
         });
     } catch (e) {
         res.status(400).send("Error " + e.message);
