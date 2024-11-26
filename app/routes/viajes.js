@@ -5,33 +5,28 @@ const dynamoose = require('dynamoose');
 
 // Ruta para obtener todos los viajes o filtrarlos por zona
 router.get('/', async (req, res) => {
-    if (req.query.zone)
-    {
-        let zone = req.query.zone;
-        try {
-            const condition = new dynamoose.Condition().where("zone").contains(zone);
-            Travel.scan(condition).exec((error, results) => {
-                if (error) {
-                    res.status(400).send("Error: " + error.message);
-                } else {
-                    res.status(200).json(results);
-                }
-            });
-        } catch (e) {
-            res.status(400).send("Error: " + e.message);
-        }
-    } else {
-        try {
-            Travel.scan().exec((error, results) => {
-                if (error) {
-                    res.status(400).send("Error: " + error.message);
-                } else {
-                    res.status(200).json(results);
-                }
-            });
-        } catch (e) {
-            res.status(400).send("Error: " + e.message);
-        }
+    const zone = req.query.zone;
+
+    // Validar el parámetro "zone"
+    if (zone && typeof zone !== 'string') {
+        return res.status(400).json({ error: 'Invalid parameter: zone must be a string' });
+    }
+
+    try {
+        // Construcción segura de la consulta
+        const condition = zone 
+            ? new dynamoose.Condition().where("zone").eq(zone) // Validación estricta de igualdad
+            : null;
+
+        // Ejecutar el escaneo
+        const results = condition 
+            ? await Travel.scan(condition).exec()
+            : await Travel.scan().exec();
+
+        res.json(results);
+    } catch (error) {
+        console.error('Error retrieving travels:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
